@@ -11,5 +11,8 @@ export const {
   Spacer,
   Text,
   VStack,
+  Divider,
+  Icon,
+  Image,
   vars,
 } = createSystem()
