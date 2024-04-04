@@ -13,7 +13,7 @@ const app = new Frog({
   ui: { vars },
   // Supply a Hub to enable frame verification.
   // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' })
-})
+}) 
 
 // Uncomment to use Edge Runtime
 // export const runtime = 'edge'
@@ -23,6 +23,7 @@ app.frame('/', (c) => {
   const fruit = inputText || buttonValue
   return c.res({
     action: '/part-2',
+    // @ts-ignore
     image: (
       <Box
         grow
@@ -30,6 +31,7 @@ app.frame('/', (c) => {
         backgroundColor="background"
         padding="32"
       >
+        
         <VStack gap="10">
           <Heading>FrogUI 🐸</Heading>
           <Text color="text300" size="20">
@@ -40,6 +42,7 @@ app.frame('/', (c) => {
         
       </Box>
     ),
+   
     intents: [
 
       <Button value="next">Next</Button>,
