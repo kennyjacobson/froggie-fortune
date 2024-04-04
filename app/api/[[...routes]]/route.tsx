@@ -28,12 +28,15 @@ const randomAnswers = [
   'Outlook good',
   'Yes',
   'Signs point to yes',
-
 ]
+
+
 
 const getRandomAnswer = () => {
   return randomAnswers[Math.floor(Math.random() * randomAnswers.length)]
 }
+
+
 
 const app = new Frog({
   assetsPath: '/',
@@ -47,8 +50,8 @@ const app = new Frog({
 // export const runtime = 'edge'
 
 app.frame('/', (c) => {
-  const { buttonValue, inputText, status } = c
-  const fruit = inputText || buttonValue
+  const { buttonValue, inputText } = c
+  const colorNum = Math.floor(Math.random() * 3) 
   return c.res({
     action: '/part-2',
     image: (
@@ -56,12 +59,15 @@ app.frame('/', (c) => {
           <Box
             grow
             alignHorizontal="center"
-            backgroundColor="purple300"
-            padding="32"
+            backgroundColor={colorNum === 0 ? 'red300' : colorNum === 1 ? 'blue300' : 'purple300'}
+            padding="16"
+            color="text300"
+            fontFamily="madimi"
+            fontSize="32"
           >
-            <Text color="text300" size="20">
+        
               Ask me any yes or no question.
-            </Text>
+           
             <Image 
               src="https://nfts-dataw.s3.amazonaws.com/magic-8-ball/froggie-face-left.png" 
               height="256"
@@ -77,6 +83,7 @@ app.frame('/', (c) => {
 app.frame('/part-2', (c) => {
   const { status } = c
   const answer = getRandomAnswer()
+  const colorNum = Math.floor(Math.random() * 3) 
   return c.res({
     image: (
       <Columns gap="1" alignVertical='center' grow>
@@ -84,12 +91,15 @@ app.frame('/part-2', (c) => {
           <Box
             grow
             alignHorizontal="center"
-            backgroundColor="purple100"
+            backgroundColor={colorNum === 0 ? 'red100' : colorNum === 1 ? 'blue100' : 'purple100'}
             padding="16"
+            fontFamily={'madimi'}
+            fontSize="14"
+            color={'text300'}
           >
-            <Text color="text300" size="14">
+            {/* <Text color="text300" size="14" fontFamily="madimi"> */}
               Froggie says...
-            </Text>
+            
             <Image 
               src="https://nfts-dataw.s3.amazonaws.com/magic-8-ball/froggie-face-right.png" 
               height="256"
@@ -101,13 +111,16 @@ app.frame('/part-2', (c) => {
             grow
             alignHorizontal="center"
             alignVertical='center'
-            backgroundColor="purple300"
+            backgroundColor={colorNum === 0 ? 'red300' : colorNum === 1 ? 'blue300' : 'purple300'}
             textAlign='center'
             padding="32"
+            fontFamily="madimi"
+            fontSize="64"
+            
           >
-            <Text color="text300" size="64">
+           
               {answer}
-            </Text>
+            
           </Box>
         </Column>
       </Columns>
